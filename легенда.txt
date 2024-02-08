@@ -1,0 +1,54 @@
+string q = "", w = "";
+Console.WriteLine("Выберите, в какой системе счисления находится число:");
+Console.WriteLine("1. Десятичная");
+Console.WriteLine("2. Двоичная");
+int e = Convert.ToInt32(Console.ReadLine());
+
+switch (e)
+{
+    case 1:
+        Console.WriteLine("Введите число в десятичной системе счисления:");
+        int num = Convert.ToInt32(Console.ReadLine());
+        for (int i = 0; num > 0; i++)
+        {
+
+            if (num % 2 == 0)
+            {
+                q = q + "0";
+            }
+            else
+            {
+                q = q + "1";
+            }
+            w = w + num + "\t" + (num / 2) + "\t\t" + q[i] + "\n";
+            num /= 2;
+        }
+        char[] arr = q.ToCharArray();
+        Array.Reverse(arr);
+        q = new string(arr);
+        Console.WriteLine($"\nВот ваше число в двоичной системе счисления: \n{q}");
+        Console.WriteLine($"\n\tРЕШЕНИЕ\nЧисло:\tЦелое частное:\tОстаток:\n{w}");
+        break;
+
+    case 2:
+    Console.WriteLine("Введите число в двоичной системе счисления:");
+    string binaryStr = Console.ReadLine();
+    int decimalNum = 0, pow = 0;
+    for (int i = binaryStr.Length - 1; i >= 0; i--)
+    {
+        if (binaryStr[i] == '1')
+        {
+            decimalNum += (int)Math.Pow(2, pow);
+                w = w + $"(1 * 2^{pow}) + ";
+        }
+        pow++;
+    }
+        w = w.Remove(w.Length - 3);
+        Console.WriteLine($"\nВот ваше число в десятичной системе счисления: \n{decimalNum}");
+    Console.WriteLine($"\n\tРЕШЕНИЕ\n{w} = {decimalNum}\n");
+        break;
+    default:
+    Console.WriteLine("Неверный выбор.");
+        break;
+        
+}
